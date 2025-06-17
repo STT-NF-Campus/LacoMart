@@ -1,8 +1,12 @@
 <?php
+$host = "lacomart-db";
+$user = "user";
+$pass = "pass";
+$db   = "etoko";
 
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$dbname = 'etoko';
+$koneksi = mysqli_connect($host, $user, $pass, $db);
 
-$koneksi = mysqli_connect($host, $username, $password, $dbname);
+if (!$koneksi) {
+    die("Koneksi gagal: " . mysqli_connect_error());
+}
+?>
