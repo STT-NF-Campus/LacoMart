@@ -8,7 +8,6 @@ pipeline {
             sh 'docker compose down --volumes --remove-orphans || true'
             sh 'docker system prune -f || true'
             }
-            }
         }
 
         stage('Building Docker Image') {
