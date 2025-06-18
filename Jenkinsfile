@@ -44,7 +44,7 @@ pipeline {
             steps {
             echo 'Memeriksa log container...'
             sh 'docker logs lacomart-web || true'
-            sh 'docker logs lacomart_db || true'
+            sh 'docker logs lacomart-db || true'
             }
         }
 
