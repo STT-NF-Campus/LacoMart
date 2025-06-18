@@ -6,24 +6,59 @@ pipeline {
     }
 
     stages {
-        stage('Clean Up') {
+        stage('Membersihkan Container, Volume, dan Images Sebelumnya') {
             steps {
-                echo 'Stopping and removing existing containers (if any)...'
-                sh 'docker compose down --volumes || true'
+            echo 'Menghentikan dan menghapus container, volume, dan images yang ada (jika ada)...'
+            sh 'docker compose down --rmi all --volumes || true'
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Building Docker Image') {
             steps {
-                echo 'Building Docker image...'
-                sh 'docker compose build'
+            echo 'Membangun gambar Docker...'
+            sh 'docker compose build'
             }
         }
 
-        stage('Run Container') {
+        stage('Jalankan Container') {
             steps {
-                echo 'Starting containers...'
-                sh 'docker compose up -d'
+            echo 'Menjalankan container...'
+            sh 'docker compose up -d'
+            }
+        }
+
+        stage('Tunggu Beberapa Detik') {
+            steps {
+            echo 'Menunggu beberapa detik untuk memastikan container berjalan...'
+            sleep time: 10, unit: 'SECONDS'
+            }
+        }
+        stage('Cek Status Container') {
+            steps {
+            echo 'Memeriksa status container...'
+            sh 'docker ps -a'
+            }
+        }
+
+        stage('Cek Log Container') {
+            steps {
+            echo 'Memeriksa log container...'
+            sh 'docker logs lacomart-web || true'
+            sh 'docker logs lacomart_db || true'
+            }
+        }
+
+        stage('Cek Koneksi ke Aplikasi') {
+            steps {
+            echo 'Memeriksa koneksi ke aplikasi...'
+            sh 'curl -f http://localhost:8080 || true'
+            }
+        }
+        
+        stage('Cek Koneksi ke Database') {
+            steps {
+            echo 'Memeriksa koneksi ke database...'
+            sh 'docker exec -it lacomart_db mysql -u root -proot -e "USE etoko; SHOW TABLES;" || true'
             }
         }
     }

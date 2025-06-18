@@ -16,8 +16,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: etoko
-      MYSQL_USER: user
-      MYSQL_PASSWORD: pass
+      MYSQL_USER: zainuri
+      MYSQL_PASSWORD: zainuri
     volumes:
       - db_data:/var/lib/mysql
       - ./etoko.sql:/docker-entrypoint-initdb.d/etoko.sql:ro
