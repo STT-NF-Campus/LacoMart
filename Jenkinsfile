@@ -6,7 +6,6 @@ pipeline {
     }
 
     stages {
-
         stage('Clean Up') {
             steps {
                 echo 'Stopping and removing existing containers (if any)...'
@@ -25,15 +24,6 @@ pipeline {
             steps {
                 echo 'Starting containers...'
                 sh 'docker compose up -d'
-            }
-        }
-
-        stage('Verify Database') {
-            steps {
-                sh '''
-                sleep 10
-                docker exec -it lacomart-db mysql -u root -proot -e "USE etoko; SHOW TABLES;"
-                '''
             }
         }
     }
