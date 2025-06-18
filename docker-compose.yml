@@ -19,7 +19,6 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: pass
     volumes:
-      - db_data:/var/lib/mysql
       - ./etoko.sql:/docker-entrypoint-initdb.d/etoko.sql:ro
     ports:
       - "3306:3306"
