@@ -27,5 +27,14 @@ pipeline {
                 sh 'docker compose up -d'
             }
         }
+
+        stage('Verify Database') {
+            steps {
+                sh '''
+                sleep 10
+                docker exec lacomart-db mysql -u root -proot -e "USE etoko; SHOW TABLES;"
+                '''
+            }
+        }
     }
 }
