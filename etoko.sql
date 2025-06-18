@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 13, 2024 at 08:45 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: localhost:3306
+-- Generation Time: Jun 18, 2025 at 06:32 AM
+-- Server version: 8.0.30
+-- PHP Version: 8.2.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `kategori_produk` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(45) NOT NULL
+  `id` int NOT NULL,
+  `nama` varchar(45) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -50,15 +50,15 @@ INSERT INTO `kategori_produk` (`id`, `nama`) VALUES
 --
 
 CREATE TABLE `pesanan` (
-  `id` int(11) NOT NULL,
-  `tanggal` varchar(10) NOT NULL,
-  `nama_pemesan` varchar(45) NOT NULL,
-  `alamat_pemesan` varchar(45) NOT NULL,
-  `no_hp` varchar(20) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `jumlah_pesanan` int(11) NOT NULL,
-  `deskripsi` text DEFAULT NULL,
-  `produk_id` int(11) NOT NULL
+  `id` int NOT NULL,
+  `tanggal` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `nama_pemesan` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `alamat_pemesan` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `no_hp` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `jumlah_pesanan` int NOT NULL,
+  `deskripsi` text COLLATE utf8mb4_general_ci,
+  `produk_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -71,7 +71,8 @@ INSERT INTO `pesanan` (`id`, `tanggal`, `nama_pemesan`, `alamat_pemesan`, `no_hp
 (16, '08-05-2023', 'Muhammad Sumbul', 'Jalan Gorong II No.25 Rt.10 Rw.01 Kota Mars', '085437927754', 'masa6@gmail.com', 2, 'Jangan Lupa bonus wiskasnya', 9),
 (17, '08-05-2023', 'Sri Asih Nurani', 'Jalan Galaksi 1 No.05 Rt.10 Rw.05 Kota Bekasi', '08121021298', 'sriasnur45@gmail.com', 1, 'Hati Hati Yak bang mahal nih soalnya.', 8),
 (18, '08-05-2024', 'Muhammad Ade Wijaya ', 'Jalan sultan II, No.25 Rt.04 Rw.10 Kota Bogor', '081210212912', 'wijaya67@gmail.com', 2, 'kalo cepet sampe ada tip nih bang. (Tapi Boong)', 16),
-(19, '12-05-2023', 'RahmaWati', 'Jl. Kemiri III No.24, Rt.010 Rw02, Tanggerang', '081210212912', 'Rahwaj23@gmail.com', 1, 'Hati Hati Bang Buat Kerja Soalnya:)', 13);
+(19, '12-05-2023', 'RahmaWati', 'Jl. Kemiri III No.24, Rt.010 Rw02, Tanggerang', '081210212912', 'Rahwaj23@gmail.com', 1, 'Hati Hati Bang Buat Kerja Soalnya:)', 13),
+(29, '15-06-2025', 'Maulana Riski', 'Jl. Tirta Kencana IV No.56B', '081381805291', 'mzainuri478@gmail.com', 5, 'Jangan Lama Lama', 3);
 
 -- --------------------------------------------------------
 
@@ -80,16 +81,16 @@ INSERT INTO `pesanan` (`id`, `tanggal`, `nama_pemesan`, `alamat_pemesan`, `no_hp
 --
 
 CREATE TABLE `produk` (
-  `id` int(11) NOT NULL,
-  `kode` varchar(10) NOT NULL,
-  `img` varchar(16) NOT NULL,
-  `nama` varchar(50) NOT NULL,
+  `id` int NOT NULL,
+  `kode` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `img` varchar(16) COLLATE utf8mb4_general_ci NOT NULL,
+  `nama` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `harga_jual` double NOT NULL,
   `harga_beli` double NOT NULL,
-  `stok` int(11) NOT NULL,
-  `min_stok` int(11) NOT NULL,
-  `deskripsi` text DEFAULT NULL,
-  `kategori_produk_id` int(11) NOT NULL
+  `stok` int NOT NULL,
+  `min_stok` int NOT NULL,
+  `deskripsi` text COLLATE utf8mb4_general_ci,
+  `kategori_produk_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -154,19 +155,19 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `kategori_produk`
 --
 ALTER TABLE `kategori_produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
