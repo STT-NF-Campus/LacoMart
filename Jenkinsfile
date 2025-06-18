@@ -32,7 +32,7 @@ pipeline {
             steps {
                 sh '''
                 sleep 10
-                docker exec lacomart-db mysql -u root -proot -e "USE etoko; SHOW TABLES;"
+                docker exec -it lacomart-db mysql -u root -proot -e "USE etoko; SHOW TABLES;"
                 '''
             }
         }
