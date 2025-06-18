@@ -1,7 +1,7 @@
 <?php
 $host = "lacomart-db";
-$user = "user";
-$pass = "pass";
+$user = "root";
+$pass = "root";
 $db   = "etoko";
 
 $koneksi = mysqli_connect($host, $user, $pass, $db);
