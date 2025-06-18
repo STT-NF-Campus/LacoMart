@@ -54,8 +54,19 @@ pipeline {
         
         stage('Cek Koneksi ke Database') {
             steps {
-            echo 'Memeriksa koneksi ke database...'
-            sh 'docker exec lacomart-db mysql -u root -proot -e "USE etoko; SHOW TABLES;" || true'
+                echo 'Memeriksa koneksi ke database...'
+                sh '''
+                    echo "Menunggu database siap..."
+                    for i in {1..10}; do
+                      if docker exec lacomart-db mysql -u root -proot -e "USE etoko; SHOW TABLES;"; then
+                        echo "Koneksi database berhasil."
+                        break
+                      else
+                        echo "Menunggu database..."
+                        sleep 3
+                      fi
+                    done
+                '''
             }
         }
     }
