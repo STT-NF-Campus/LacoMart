@@ -31,7 +31,15 @@ pipeline {
         stage('Verify Database') {
             steps {
                 sh '''
-                sleep 10
+                for i in {1..10}; do
+                  if docker exec lacomart-db mysql -u root -proot -e "SELECT 1;" > /dev/null 2>&1; then
+                    echo "MySQL is ready."
+                    break
+                  else
+                    echo "Waiting for MySQL..."
+                    sleep 5
+                  fi
+                done
                 docker exec lacomart-db mysql -u root -proot -e "USE etoko; SHOW TABLES;"
                 '''
             }
