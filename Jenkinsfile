@@ -2,10 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('Membersihkan Container, Volume, dan Images Sebelumnya') {
+        stage('Membersihkan Container, Volume, dan Images sebelumnya') {
             steps {
-            echo 'Menghentikan dan menghapus container, volume, dan images yang ada (jika ada)...'
-            sh 'docker compose down --rmi all --volumes || true'
+            echo 'Membersihkan container, volume, dan images sebelumnya...'
+            sh 'docker compose down --volumes --remove-orphans || true'
+            sh 'docker system prune -f || true'
+            }
             }
         }
 
