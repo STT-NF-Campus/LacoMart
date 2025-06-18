@@ -6,11 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Clone Repo') {
-            steps {
-                git 'https://github.com/STT-NF-Campus/LacoMart.git'
-            }
-        }
 
         stage('Build Docker Image') {
             steps {
