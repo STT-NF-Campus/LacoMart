@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        IMAGE_NAME = "lacomart:latest"
-    }
-
     stages {
         stage('Membersihkan Container, Volume, dan Images Sebelumnya') {
             steps {

@@ -3,6 +3,7 @@ version: '3.8'
 services:
   lacomart-web:
     build: .
+    image: lacomart-web:latest
     container_name: lacomart-web
     ports:
       - "8080:80"
