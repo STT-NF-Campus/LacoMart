@@ -6,8 +6,6 @@ services:
     container_name: lacomart-web
     ports:
       - "8080:80"
-    volumes:
-      - .:/var/www/html
     depends_on:
       - lacomart-db
     restart: always
